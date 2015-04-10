@@ -1,5 +1,6 @@
 package hs_mannheim.johndeereapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -36,6 +37,9 @@ public class LoginActivity extends ActionBarActivity {
 
         if (authenticator.authenticate(username, password)) {
             mErrorMessage.setVisibility(View.INVISIBLE);
+
+            Intent intent = new Intent(this, ListActivity.class);
+            startActivity(intent);
         } else {
             mErrorMessage.setText("Wrong username or password.");
             mErrorMessage.setVisibility(View.VISIBLE);
