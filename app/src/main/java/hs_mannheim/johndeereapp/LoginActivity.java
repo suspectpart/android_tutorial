@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.AlwaysAuthenticated;
 import com.example.Authenticator;
-import com.example.AuthenticatorImpl;
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -30,7 +30,7 @@ public class LoginActivity extends ActionBarActivity {
     }
 
     public void onLoginClicked(View view) {
-        Authenticator authenticator = new AuthenticatorImpl();
+        Authenticator authenticator = new AlwaysAuthenticated();
 
         String username = mUsername.getText().toString();
         String password = mPassword.getText().toString();

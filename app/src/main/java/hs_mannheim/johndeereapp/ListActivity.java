@@ -5,18 +5,25 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
 
 
 public class ListActivity extends ActionBarActivity {
 
     private static final int ITEM_LOGOUT = 1;
+    private ProgressBar mProgressBar;
+    private Button mSyncButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-    }
 
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        mSyncButton = (Button) findViewById(R.id.btn_sync);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -38,11 +45,18 @@ public class ListActivity extends ActionBarActivity {
             return true;
         }
 
-        if(id == ITEM_LOGOUT) {
+        if (id == ITEM_LOGOUT) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onSyncClicked(View view) {
+        Intent intent = new Intent(this, SyncService.class);
+        startService(intent);
+        mProgressBar.setVisibility(View.VISIBLE);
+        mSyncButton.setVisibility(View.INVISIBLE);
     }
 }

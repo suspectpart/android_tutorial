@@ -7,5 +7,6 @@
     <string name="button_login">Login</string>
     <string name="title_activity_list">ListActivity</string>
     <string name="welcome">John Deere App - Hello!</string>
+    <string name="btn_sync">Sync</string>
 
 </resources>
