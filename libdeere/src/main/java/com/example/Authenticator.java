@@ -1,5 +1,5 @@
 package com.example;
 
 public interface Authenticator {
-    boolean authenticate();
+    boolean authenticate(String username, String password);
 }
