@@ -1,14 +1,13 @@
-package hs_mannheim.johndeereapp;
+package hs_mannheim.androidtutorial;
 
 import android.app.IntentService;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.example.FakeDatabase;
 import com.example.Item;
-import com.example.JohnDeereDatabase;
 
 import java.util.ArrayList;
 
@@ -27,7 +26,7 @@ public class SyncService extends IntentService{
     @Override
     protected void onHandleIntent(Intent intent) {
         Log.d("jd", "Intent received: " + intent.toString());
-        ArrayList<Item> items = JohnDeereDatabase.getItems();
+        ArrayList<Item> items = FakeDatabase.getItems();
         Log.d("jd", "Items loaded: " + items);
 
         insertItems(items);

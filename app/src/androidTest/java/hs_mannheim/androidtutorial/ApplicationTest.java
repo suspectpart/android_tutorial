@@ -1,4 +1,4 @@
-package hs_mannheim.johndeereapp;
+package hs_mannheim.androidtutorial;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

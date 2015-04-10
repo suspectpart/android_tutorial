@@ -1,4 +1,4 @@
-package hs_mannheim.johndeereapp;
+package hs_mannheim.androidtutorial;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.AlwaysAuthenticated;
 import com.example.Authenticator;
+import com.example.AuthenticatorImpl;
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -21,16 +21,16 @@ public class LoginActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(hs_mannheim.androidtutorial.R.layout.activity_login);
 
-        mUsername = (EditText) findViewById(R.id.et_username);
-        mPassword = (EditText) findViewById(R.id.et_password);
+        mUsername = (EditText) findViewById(hs_mannheim.androidtutorial.R.id.et_username);
+        mPassword = (EditText) findViewById(hs_mannheim.androidtutorial.R.id.et_password);
 
-        mErrorMessage = (TextView) findViewById(R.id.tv_error_message);
+        mErrorMessage = (TextView) findViewById(hs_mannheim.androidtutorial.R.id.tv_error_message);
     }
 
     public void onLoginClicked(View view) {
-        Authenticator authenticator = new AlwaysAuthenticated();
+        Authenticator authenticator = new AuthenticatorImpl();
 
         String username = mUsername.getText().toString();
         String password = mPassword.getText().toString();

@@ -1,22 +1,19 @@
-package hs_mannheim.johndeereapp;
+package hs_mannheim.androidtutorial;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
-import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.example.Item;
 
@@ -34,13 +31,22 @@ public class ListActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(hs_mannheim.androidtutorial.R.layout.activity_list);
 
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
-        mSyncButton = (Button) findViewById(R.id.btn_sync);
-        mListView = (ListView) findViewById(R.id.lv_items);
+        mProgressBar = (ProgressBar) findViewById(hs_mannheim.androidtutorial.R.id.progressBar);
+        mSyncButton = (Button) findViewById(hs_mannheim.androidtutorial.R.id.btn_sync);
+        mListView = (ListView) findViewById(hs_mannheim.androidtutorial.R.id.lv_items);
 
         isSyncing = false;
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ListActivity.this, ItemDetailsActivity.class);
+                intent.putExtra("id", (int) id);
+                startActivity(intent);
+            }
+        });
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(SyncService.ACTION_SYNCED);
@@ -52,13 +58,13 @@ public class ListActivity extends ActionBarActivity {
             }
         }, filter);
 
-
+        updateItemList();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_list, menu);
+        getMenuInflater().inflate(hs_mannheim.androidtutorial.R.menu.menu_list, menu);
         menu.add(ITEM_LOGOUT, ITEM_LOGOUT, 1, "Logout");
         return true;
     }
@@ -71,7 +77,7 @@ public class ListActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == hs_mannheim.androidtutorial.R.id.action_settings) {
             return true;
         }
 
@@ -92,6 +98,7 @@ public class ListActivity extends ActionBarActivity {
     }
 
     private void onSynced() {
+        isSyncing = false;
         mProgressBar.setVisibility(View.INVISIBLE);
         mSyncButton.setVisibility(View.VISIBLE);
         isSyncing = false;
@@ -100,6 +107,8 @@ public class ListActivity extends ActionBarActivity {
     }
 
     private void updateItemList() {
+        if(isSyncing) return;
+
         SQLLiteHelper helper = new SQLLiteHelper(this);
         Cursor itemsCursor = helper.getReadableDatabase().query("Items", new String[]{"ID", "Title", "Description"}, null, null, null, null, null);
 
@@ -115,76 +124,5 @@ public class ListActivity extends ActionBarActivity {
         }
 
         mListView.setAdapter(new ItemAdapter(items));
-    }
-
-    public class ItemAdapter implements ListAdapter {
-
-        private ArrayList<Item> mItems;
-
-        public ItemAdapter(ArrayList<Item> items) {
-            mItems = items;
-        }
-
-        @Override
-        public boolean areAllItemsEnabled() {
-            return true;
-        }
-
-        @Override
-        public boolean isEnabled(int position) {
-            return true;
-        }
-
-        @Override
-        public void registerDataSetObserver(DataSetObserver observer) {
-
-        }
-
-        @Override
-        public void unregisterDataSetObserver(DataSetObserver observer) {
-
-        }
-
-        @Override
-        public int getCount() {
-            return mItems.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return mItems.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public boolean hasStableIds() {
-            return false;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            TextView tv = new TextView(ListActivity.this);
-            tv.setText(mItems.get(position).getTitle());
-            return tv;
-        }
-
-        @Override
-        public int getItemViewType(int position) {
-            return 1;
-        }
-
-        @Override
-        public int getViewTypeCount() {
-            return 1;
-        }
-
-        @Override
-        public boolean isEmpty() {
-            return mItems.size() <= 0;
-        }
     }
 }

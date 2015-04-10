@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "hs_mannheim.johndeereapp"
+        applicationId "hs_mannheim.androidtutorial"
         minSdkVersion 19
         targetSdkVersion 21
         versionCode 1

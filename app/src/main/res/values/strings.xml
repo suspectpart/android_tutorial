@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">JohnDeereApp</string>
-    <string name="hello_world">John Deere Login</string>
+    <string name="app_name">Android Tutorial</string>
+    <string name="hello_world">Android Tutorial Login</string>
     <string name="action_settings">Settings</string>
     <string name="button_login">Login</string>
     <string name="title_activity_list">ListActivity</string>
-    <string name="welcome">John Deere App - Hello!</string>
+    <string name="welcome">Android Tutorial Trecker App</string>
     <string name="btn_sync">Sync</string>
+    <string name="title_activity_item_details">ItemDetailsActivity</string>
 
 </resources>

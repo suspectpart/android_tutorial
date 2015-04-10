@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="hs_mannheim.johndeereapp" >
+    package="hs_mannheim.androidtutorial" >
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-
         <service android:name=".SyncService" />
+
         <activity
-            android:noHistory="true"
             android:name=".LoginActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:noHistory="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:parentActivityName=".ListActivity"
             android:name=".ListActivity"
-            android:label="@string/title_activity_list">
-
-           <intent-filter>
-               <action android:name="hs_mannheim.johndeereapp.action.SYNCED"  />
-           </intent-filter>
-
+            android:label="@string/title_activity_list"
+            android:parentActivityName=".ListActivity" >
+            <intent-filter>
+                <action android:name="hs_mannheim.johndeereapp.action.SYNCED" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ItemDetailsActivity"
+            android:label="@string/title_activity_item_details"
+            android:parentActivityName=".ListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ListActivity" />
         </activity>
     </application>
 

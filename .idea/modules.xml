@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidTutorial.iml" filepath="$PROJECT_DIR$/AndroidTutorial.iml" />
       <module fileurl="file://$PROJECT_DIR$/JohnDeereApp.iml" filepath="$PROJECT_DIR$/JohnDeereApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libdeere/libdeere.iml" filepath="$PROJECT_DIR$/libdeere/libdeere.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libdeere/supportlib.iml" filepath="$PROJECT_DIR$/libdeere/supportlib.iml" />
     </modules>
   </component>
 </project>
