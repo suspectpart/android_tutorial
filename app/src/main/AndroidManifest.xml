@@ -21,7 +21,12 @@
         <activity
             android:parentActivityName=".ListActivity"
             android:name=".ListActivity"
-            android:label="@string/title_activity_list" >
+            android:label="@string/title_activity_list">
+
+           <intent-filter>
+               <action android:name="hs_mannheim.johndeereapp.action.SYNCED"  />
+           </intent-filter>
+
         </activity>
     </application>
 

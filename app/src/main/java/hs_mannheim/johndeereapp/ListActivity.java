@@ -1,6 +1,9 @@
 package hs_mannheim.johndeereapp;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -15,6 +18,7 @@ public class ListActivity extends ActionBarActivity {
     private static final int ITEM_LOGOUT = 1;
     private ProgressBar mProgressBar;
     private Button mSyncButton;
+    private boolean isSyncing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,17 @@ public class ListActivity extends ActionBarActivity {
 
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mSyncButton = (Button) findViewById(R.id.btn_sync);
+        isSyncing = false;
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(SyncService.ACTION_SYNCED);
+
+        this.registerReceiver(new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                ListActivity.this.onSynced();
+            }
+        }, filter);
     }
 
     @Override
@@ -58,5 +73,12 @@ public class ListActivity extends ActionBarActivity {
         startService(intent);
         mProgressBar.setVisibility(View.VISIBLE);
         mSyncButton.setVisibility(View.INVISIBLE);
+        isSyncing = true;
+    }
+
+    private void onSynced() {
+        mProgressBar.setVisibility(View.INVISIBLE);
+        mSyncButton.setVisibility(View.VISIBLE);
+        isSyncing = false;
     }
 }

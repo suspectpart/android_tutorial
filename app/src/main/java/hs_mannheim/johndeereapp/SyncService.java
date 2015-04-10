@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 public class SyncService extends IntentService{
 
+    public final static String ACTION_SYNCED = "String hs_mannheim.johndeereapp.action.SYNCED";
+
     public SyncService() {
         this("SyncService");
     }
@@ -24,5 +26,13 @@ public class SyncService extends IntentService{
         Log.d("jd", "Intent received: " + intent.toString());
         ArrayList<Item> items = JohnDeereDatabase.getItems();
         Log.d("jd", "Items loaded: " + items);
+
+        notifySynced();
+    }
+
+    private void notifySynced() {
+        Intent broadcastIntent = new Intent();
+        broadcastIntent .setAction(ACTION_SYNCED);
+        sendBroadcast(broadcastIntent );
     }
 }
