@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">JohnDeereApp</string>
+    <string name="hello_world">John Deere Login</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_login">Login</string>
+
+</resources>
