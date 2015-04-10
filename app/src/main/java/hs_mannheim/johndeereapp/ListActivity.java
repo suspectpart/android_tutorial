@@ -4,8 +4,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -80,5 +82,17 @@ public class ListActivity extends ActionBarActivity {
         mProgressBar.setVisibility(View.INVISIBLE);
         mSyncButton.setVisibility(View.VISIBLE);
         isSyncing = false;
+
+        updateItemList();
+    }
+
+    private void updateItemList() {
+        SQLLiteHelper helper = new SQLLiteHelper(this);
+        Cursor itemsCursor = helper.getReadableDatabase().query("Items", new String[]{"ID", "Title", "Description"}, null, null, null, null, null);
+
+        itemsCursor.moveToFirst();
+        do {
+            Log.d("jd", "Item: " + itemsCursor.getString(0));
+        } while(itemsCursor.moveToNext());
     }
 }
