@@ -42,7 +42,9 @@ public class SyncService extends IntentService{
             ContentValues values = new ContentValues();
             values.put("ID", item.getId());
             values.put("Title", item.getTitle());
+            values.put("Html", item.getHtml());
             values.put("Description", item.getDescription());
+
             try {
                 db.insertOrThrow("Items", null, values);
                 Log.d("jd", "Inserted item " + item.getTitle());

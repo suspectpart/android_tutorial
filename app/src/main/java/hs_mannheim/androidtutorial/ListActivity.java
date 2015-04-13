@@ -110,7 +110,7 @@ public class ListActivity extends ActionBarActivity {
         if(isSyncing) return;
 
         SQLLiteHelper helper = new SQLLiteHelper(this);
-        Cursor itemsCursor = helper.getReadableDatabase().query("Items", new String[]{"ID", "Title", "Description"}, null, null, null, null, null);
+        Cursor itemsCursor = helper.getReadableDatabase().query("Items", new String[]{"ID", "Title", "Html", "Description"}, null, null, null, null, null);
 
         itemsCursor.moveToFirst();
 
@@ -118,7 +118,7 @@ public class ListActivity extends ActionBarActivity {
 
         itemsCursor.moveToFirst();
         while (!itemsCursor.isAfterLast()) {
-            Item item = new Item(itemsCursor.getInt(0), itemsCursor.getString(1), itemsCursor.getString(2));
+            Item item = new Item(itemsCursor.getInt(0), itemsCursor.getString(1), itemsCursor.getString(2), itemsCursor.getString(3));
             items.add(item);
             itemsCursor.moveToNext();
         }

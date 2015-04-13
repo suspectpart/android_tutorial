@@ -6,12 +6,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class SQLLiteHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 9;
     private static final String DICTIONARY_TABLE_NAME = "items";
     private static final String DICTIONARY_TABLE_CREATE =
             "CREATE TABLE " + DICTIONARY_TABLE_NAME + " (" +
                     "ID INTEGER UNIQUE, " +
                     "Title TEXT, " +
+                    "Html TEXT, " +
                     "Description TEXT);";
 
     SQLLiteHelper(Context context) {
