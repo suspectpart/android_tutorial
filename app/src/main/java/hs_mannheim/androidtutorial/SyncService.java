@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class SyncService extends IntentService {
 
-    public final static String ACTION_SYNCED = "String hs_mannheim.johndeereapp.action.SYNCED";
+    public final static String ACTION_SYNCED = "String hs_mannheim.androidtutorial.action.SYNCED";
 
     public SyncService() {
         this("SyncService");
