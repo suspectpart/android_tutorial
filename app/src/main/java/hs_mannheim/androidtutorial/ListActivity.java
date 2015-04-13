@@ -27,6 +27,7 @@ public class ListActivity extends ActionBarActivity {
     private Button mSyncButton;
     private ListView mListView;
     private boolean isSyncing;
+    private BroadcastReceiver mBroadcastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,15 +49,12 @@ public class ListActivity extends ActionBarActivity {
             }
         });
 
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(SyncService.ACTION_SYNCED);
-
-        this.registerReceiver(new BroadcastReceiver() {
+        mBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 ListActivity.this.onSynced();
             }
-        }, filter);
+        };
 
         updateItemList();
     }
@@ -124,5 +122,25 @@ public class ListActivity extends ActionBarActivity {
         }
 
         mListView.setAdapter(new ItemAdapter(items));
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(SyncService.ACTION_SYNCED);
+        registerReceiver(mBroadcastReceiver, filter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unregisterReceiver(mBroadcastReceiver);
     }
 }

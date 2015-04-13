@@ -15,7 +15,6 @@ public class LoginActivity extends ActionBarActivity {
 
     private EditText mUsername;
     private EditText mPassword;
-
     private TextView mErrorMessage;
 
     @Override
