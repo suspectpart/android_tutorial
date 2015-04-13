@@ -5,7 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/AndroidTutorial.iml" filepath="$PROJECT_DIR$/AndroidTutorial.iml" />
       <module fileurl="file://$PROJECT_DIR$/JohnDeereApp.iml" filepath="$PROJECT_DIR$/JohnDeereApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libdeere/supportlib.iml" filepath="$PROJECT_DIR$/libdeere/supportlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/supportlib/supportlib.iml" filepath="$PROJECT_DIR$/supportlib/supportlib.iml" />
     </modules>
   </component>
 </project>

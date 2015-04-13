@@ -1,1 +1,1 @@
-include ':app', ':libdeere'
+include ':app', ':supportlib'
