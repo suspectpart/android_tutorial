@@ -107,7 +107,7 @@ public class ListActivity extends ActionBarActivity {
     }
 
     private void updateItemList() {
-        if(isSyncing) return;
+        if (isSyncing) return;
 
         SQLLiteHelper helper = new SQLLiteHelper(this);
         Cursor itemsCursor = helper.getReadableDatabase().query("Items", new String[]{"ID", "Title", "Html", "Description"}, null, null, null, null, null);

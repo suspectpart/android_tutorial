@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.webkit.WebView;
 import android.widget.TextView;
 
@@ -33,6 +32,7 @@ public class ItemDetailsActivity extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
         SQLLiteHelper sqlLiteHelper = new SQLLiteHelper(this);
         SQLiteDatabase db = sqlLiteHelper.getReadableDatabase();
         Cursor items = db.query("items", new String[]{"Title", "Html", "Description"}, "ID = " + mId, null, null, null, null);
@@ -40,11 +40,11 @@ public class ItemDetailsActivity extends ActionBarActivity {
         items.moveToFirst();
 
         String title = items.getString(0);
+        String html = items.getString(1);
         String description = items.getString(2);
 
         mTitle.setText(title);
         mDescription.setText(description);
-        Log.d("jd", items.getString(1));
-        mWebview.loadData(items.getString(1), "text/html", null);
+        mWebview.loadData(html, "text/html", null);
     }
 }

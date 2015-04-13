@@ -11,7 +11,7 @@ import com.example.Item;
 
 import java.util.ArrayList;
 
-public class SyncService extends IntentService{
+public class SyncService extends IntentService {
 
     public final static String ACTION_SYNCED = "String hs_mannheim.johndeereapp.action.SYNCED";
 
@@ -38,7 +38,7 @@ public class SyncService extends IntentService{
         SQLLiteHelper helper = new SQLLiteHelper(this);
         SQLiteDatabase db = helper.getWritableDatabase();
 
-        for(Item item: items) {
+        for (Item item : items) {
             ContentValues values = new ContentValues();
             values.put("ID", item.getId());
             values.put("Title", item.getTitle());
@@ -48,8 +48,7 @@ public class SyncService extends IntentService{
             try {
                 db.insertOrThrow("Items", null, values);
                 Log.d("jd", "Inserted item " + item.getTitle());
-            }
-            catch(Exception e) {
+            } catch (Exception e) {
                 Log.d("jd", e.getMessage());
             }
         }
@@ -57,7 +56,7 @@ public class SyncService extends IntentService{
 
     private void notifySynced() {
         Intent broadcastIntent = new Intent();
-        broadcastIntent .setAction(ACTION_SYNCED);
-        sendBroadcast(broadcastIntent );
+        broadcastIntent.setAction(ACTION_SYNCED);
+        sendBroadcast(broadcastIntent);
     }
 }
